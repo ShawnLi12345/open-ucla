@@ -35,7 +35,7 @@ export default function RootLayout({
         <footer className="border-t border-gray-200 bg-white py-6 text-center text-xs text-gray-400">
           <p>
             OpenUCLA is open source ·{" "}
-            <a href="https://github.com" className="text-[#2774AE] hover:underline">
+            <a href="https://github.com/DNKYr/open-ucla" className="text-[#2774AE] hover:underline">
               GitHub
             </a>{" "}
             ·{" "}
