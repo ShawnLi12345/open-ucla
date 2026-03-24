@@ -88,12 +88,32 @@ export function getStats(): { courses: number; materials: number; contributors: 
   return { courses: courseCount, materials: materialCount, contributors: contributors.size };
 }
 
+// Common abbreviations for UCLA department codes
+const DEPARTMENT_ALIASES: Record<string, string[]> = {
+  "COM SCI": ["CS", "COMSCI"],
+  "MATH": ["MATHEMATICS"],
+  "ECON": ["ECONOMICS", "EC"],
+  "PHYS": ["PHYSICS"],
+  "CHEM": ["CHEMISTRY"],
+  "STATS": ["STATISTICS", "STAT"],
+  "ENG": ["ENGLISH"],
+  "PSYCH": ["PSYCHOLOGY"],
+  "POLI SCI": ["POLISCI", "PS"],
+  "LIFE SCI": ["LIFESCI", "LS"],
+};
+
+function getDepartmentAliases(code: string): string {
+  const aliases = DEPARTMENT_ALIASES[code] || [];
+  return aliases.join(" ");
+}
+
 export function buildSearchIndex(): SearchEntry[] {
   const departments = getDepartments();
   const entries: SearchEntry[] = [];
 
   for (const dept of departments) {
     const courses = getCourses(dept.slug);
+    const aliases = getDepartmentAliases(dept.code);
 
     for (const course of courses) {
       // Add a course-level entry
@@ -103,6 +123,7 @@ export function buildSearchIndex(): SearchEntry[] {
         departmentName: dept.name,
         departmentCode: dept.code,
         departmentSlug: dept.slug,
+        aliases,
         path: `/dept/${dept.slug}/${course.number}`,
       });
 
@@ -115,6 +136,7 @@ export function buildSearchIndex(): SearchEntry[] {
           departmentName: dept.name,
           departmentCode: dept.code,
           departmentSlug: dept.slug,
+          aliases,
           professor: mat.professor,
           quarter: mat.quarter,
           materialTitle: mat.title,

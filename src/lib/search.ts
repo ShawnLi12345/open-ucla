@@ -10,10 +10,11 @@ export function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
       { name: "courseNumber", weight: 3 },
       { name: "departmentName", weight: 1.5 },
       { name: "departmentCode", weight: 2 },
+      { name: "aliases", weight: 2 },
       { name: "professor", weight: 1.5 },
       { name: "materialTitle", weight: 1 },
     ],
-    threshold: 0.3,
+    threshold: 0.4,
     includeScore: true,
   });
   return fuseInstance;
