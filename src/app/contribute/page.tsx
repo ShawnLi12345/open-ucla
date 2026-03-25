@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation"
 
 const MATERIAL_TYPES = [
   { value: "syllabus", label: "Syllabus" },
@@ -15,8 +16,9 @@ const QUARTERS = ["Fall", "Winter", "Spring", "Summer"];
 const YEARS = ["2026", "2025", "2024", "2023"];
 
 export default function ContributePage() {
-  const [department, setDepartment] = useState("");
-  const [courseNumber, setCourseNumber] = useState("");
+  const searchParams = useSearchParams()
+  const [department,setDepartment] = useState(searchParams.get("dept") ?? "")
+  const [courseNumber, setCourseNumber] = useState(searchParams.get("courseNumber") ?? "")
   const [materialType, setMaterialType] = useState("syllabus");
   const [quarter, setQuarter] = useState("Winter");
   const [year, setYear] = useState("2026");

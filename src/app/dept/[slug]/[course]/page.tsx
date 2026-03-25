@@ -50,7 +50,7 @@ export default async function CoursePage({
         <div className="rounded-lg border-2 border-dashed border-gray-300 p-10 text-center">
           <p className="text-gray-500">No materials yet for this course — be the first to contribute!</p>
           <Link
-            href="/contribute"
+            href={`/contribute?course=${encodeURIComponent(courseNumber)}&dept=${encodeURIComponent(slug)}`}
             className="mt-4 inline-block rounded-lg bg-[#2774AE] px-4 py-2 text-sm font-semibold text-white"
           >
             + Upload Material
@@ -74,7 +74,7 @@ export default async function CoursePage({
           Have materials for {department.code} {course.number}? Help your fellow Bruins!
         </p>
         <Link
-          href="/contribute"
+          href={`/contribute?course=${encodeURIComponent(courseNumber)}&dept=${encodeURIComponent(slug)}`}
           className="inline-block rounded-lg bg-[#2774AE] px-5 py-2 text-sm font-semibold text-white hover:bg-[#1e5f8f]"
         >
           + Upload Material
