@@ -66,8 +66,9 @@ export default function ContributePage() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">Department</label>
+          <label htmlFor="contrib-dept" className="mb-1 block text-sm font-semibold text-gray-700">Department</label>
           <input
+            id="contrib-dept"
             type="text"
             required
             value={department}
@@ -78,8 +79,9 @@ export default function ContributePage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">Course Number</label>
+          <label htmlFor="contrib-course" className="mb-1 block text-sm font-semibold text-gray-700">Course Number</label>
           <input
+            id="contrib-course"
             type="text"
             required
             value={courseNumber}
@@ -90,8 +92,9 @@ export default function ContributePage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">Material Type</label>
+          <label htmlFor="contrib-type" className="mb-1 block text-sm font-semibold text-gray-700">Material Type</label>
           <select
+            id="contrib-type"
             value={materialType}
             onChange={(e) => setMaterialType(e.target.value)}
             className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#2774AE]"
@@ -103,9 +106,10 @@ export default function ContributePage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">Quarter & Year</label>
+          <label htmlFor="contrib-quarter" className="mb-1 block text-sm font-semibold text-gray-700">Quarter & Year</label>
           <div className="flex gap-2">
             <select
+              id="contrib-quarter"
               value={quarter}
               onChange={(e) => setQuarter(e.target.value)}
               className="flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#2774AE]"
@@ -115,6 +119,8 @@ export default function ContributePage() {
               ))}
             </select>
             <select
+              id="contrib-year"
+              aria-label="Year"
               value={year}
               onChange={(e) => setYear(e.target.value)}
               className="flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-[#2774AE]"
@@ -127,10 +133,11 @@ export default function ContributePage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">
+          <label htmlFor="contrib-professor" className="mb-1 block text-sm font-semibold text-gray-700">
             Professor <span className="font-normal text-gray-400">(optional)</span>
           </label>
           <input
+            id="contrib-professor"
             type="text"
             value={professor}
             onChange={(e) => setProfessor(e.target.value)}
@@ -140,9 +147,10 @@ export default function ContributePage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">File</label>
+          <label htmlFor="contrib-file" className="mb-1 block text-sm font-semibold text-gray-700">File</label>
           <div className="rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-8 text-center">
             <input
+              id="contrib-file"
               type="file"
               required
               accept=".pdf,.docx,.png,.jpg,.jpeg,.md,.txt"
@@ -159,10 +167,11 @@ export default function ContributePage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">
+          <label htmlFor="contrib-desc" className="mb-1 block text-sm font-semibold text-gray-700">
             Description <span className="font-normal text-gray-400">(optional)</span>
           </label>
           <textarea
+            id="contrib-desc"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Any notes about this material..."

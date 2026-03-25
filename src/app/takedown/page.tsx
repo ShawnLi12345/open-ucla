@@ -45,8 +45,9 @@ export default function TakedownPage() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">Your Name</label>
+          <label htmlFor="takedown-name" className="mb-1 block text-sm font-semibold text-gray-700">Your Name</label>
           <input
+            id="takedown-name"
             type="text"
             required
             value={name}
@@ -56,8 +57,9 @@ export default function TakedownPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">Email</label>
+          <label htmlFor="takedown-email" className="mb-1 block text-sm font-semibold text-gray-700">Email</label>
           <input
+            id="takedown-email"
             type="email"
             required
             value={email}
@@ -67,8 +69,9 @@ export default function TakedownPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">Material URL</label>
+          <label htmlFor="takedown-url" className="mb-1 block text-sm font-semibold text-gray-700">Material URL</label>
           <input
+            id="takedown-url"
             type="text"
             required
             value={materialUrl}
@@ -79,10 +82,11 @@ export default function TakedownPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-semibold text-gray-700">
+          <label htmlFor="takedown-reason" className="mb-1 block text-sm font-semibold text-gray-700">
             Reason for Takedown
           </label>
           <textarea
+            id="takedown-reason"
             required
             value={reason}
             onChange={(e) => setReason(e.target.value)}

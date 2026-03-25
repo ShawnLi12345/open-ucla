@@ -6,8 +6,14 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in
@@ -16,7 +22,10 @@
           packages = with pkgs; [
             bun
             typescript
+            chromium
           ];
+
+          env.PLAYWRIGHT_BROWSERS_PATH = "${pkgs.chromium}";
         };
       }
     );
