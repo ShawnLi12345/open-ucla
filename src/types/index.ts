@@ -36,6 +36,7 @@ export interface SearchEntry {
   departmentName: string;
   departmentCode: string;
   departmentSlug: string;
+  aliases?: string;
   professor?: string;
   quarter?: string;
   materialTitle?: string;
