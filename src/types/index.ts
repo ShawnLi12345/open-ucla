@@ -28,6 +28,7 @@ export interface Department {
   name: string;
   code: string;
   slug: string;
+  aliases?: string[];
 }
 
 export interface SearchEntry {

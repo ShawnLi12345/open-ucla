@@ -1,10 +1,8 @@
 import Fuse from "fuse.js";
 import type { SearchEntry } from "@/types";
 
-let fuseInstance: Fuse<SearchEntry> | null = null;
-
-export function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
-  fuseInstance = new Fuse(entries, {
+function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
+  return new Fuse(entries, {
     keys: [
       { name: "courseName", weight: 2 },
       { name: "courseNumber", weight: 3 },
@@ -17,14 +15,11 @@ export function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
     threshold: 0.4,
     includeScore: true,
   });
-  return fuseInstance;
 }
 
 export function search(query: string, entries: SearchEntry[]): SearchEntry[] {
-  if (!fuseInstance) {
-    createSearchIndex(entries);
-  }
-  const results = fuseInstance!.search(query);
+  const fuse = createSearchIndex(entries);
+  const results = fuse.search(query);
   // Deduplicate by path
   const seen = new Set<string>();
   return results
