@@ -3,8 +3,8 @@ import type { SearchEntry } from "@/types";
 
 let fuseInstance: Fuse<SearchEntry> | null = null;
 
-export function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
-  fuseInstance = new Fuse(entries, {
+function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
+  return new Fuse(entries, {
     keys: [
       { name: "courseName", weight: 2 },
       { name: "courseNumber", weight: 3 },
@@ -17,16 +17,16 @@ export function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
     threshold: 0.4,
     includeScore: true,
   });
-  return fuseInstance;
 }
 
 export function search(query: string, entries: SearchEntry[]): SearchEntry[] {
   if (!fuseInstance) {
-    createSearchIndex(entries);
+    fuseInstance = createSearchIndex(entries);
   }
   // Normalize queries like "cs31" → "cs 31" so Fuse can match dept alias and course number separately
   const normalizedQuery = query.replace(/([a-zA-Z])(\d)/g, "$1 $2")
   const results = fuseInstance!.search(normalizedQuery);
+
   // Deduplicate by path
   const seen = new Set<string>();
   return results

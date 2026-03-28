@@ -1,5 +1,5 @@
 [
-  { "name": "Computer Science", "code": "COM SCI", "slug": "com-sci" },
-  { "name": "Mathematics", "code": "MATH", "slug": "math" },
-  { "name": "Economics", "code": "ECON", "slug": "econ" }
+  { "name": "Computer Science", "code": "COM SCI", "slug": "com-sci", "aliases": ["CS", "COMSCI"] },
+  { "name": "Mathematics", "code": "MATH", "slug": "math", "aliases": ["MATHEMATICS"] },
+  { "name": "Economics", "code": "ECON", "slug": "econ", "aliases": ["ECONOMICS", "EC"] }
 ]
