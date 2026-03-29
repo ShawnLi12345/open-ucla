@@ -1,8 +1,6 @@
 import Fuse from "fuse.js";
 import type { SearchEntry } from "@/types";
 
-let fuseInstance: Fuse<SearchEntry> | null = null;
-
 function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
   return new Fuse(entries, {
     keys: [
@@ -20,12 +18,10 @@ function createSearchIndex(entries: SearchEntry[]): Fuse<SearchEntry> {
 }
 
 export function search(query: string, entries: SearchEntry[]): SearchEntry[] {
-  if (!fuseInstance) {
-    fuseInstance = createSearchIndex(entries);
-  }
   // Normalize queries like "cs31" → "cs 31" so Fuse can match dept alias and course number separately
-  const normalizedQuery = query.replace(/([a-zA-Z])(\d)/g, "$1 $2")
-  const results = fuseInstance!.search(normalizedQuery);
+  const normalizedQuery = query.replace(/([a-zA-Z])(\d)/g, "$1 $2");
+  const fuse = createSearchIndex(entries);
+  const results = fuse.search(normalizedQuery);
 
   // Deduplicate by path
   const seen = new Set<string>();
