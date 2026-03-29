@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useSearchParams } from "next/navigation"
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const MATERIAL_TYPES = [
   { value: "syllabus", label: "Syllabus" },
@@ -16,9 +16,17 @@ const QUARTERS = ["Fall", "Winter", "Spring", "Summer"];
 const YEARS = ["2026", "2025", "2024", "2023"];
 
 export default function ContributePage() {
-  const searchParams = useSearchParams()
-  const [department,setDepartment] = useState(searchParams.get("dept") ?? "")
-  const [courseNumber, setCourseNumber] = useState(searchParams.get("courseNumber") ?? "")
+  return (
+    <Suspense fallback={<div className="mx-auto max-w-xl px-6 py-10">Loading...</div>}>
+      <ContributeForm />
+    </Suspense>
+  );
+}
+
+function ContributeForm() {
+  const searchParams = useSearchParams();
+  const [department, setDepartment] = useState(searchParams.get("dept") ?? "");
+  const [courseNumber, setCourseNumber] = useState(searchParams.get("courseNumber") ?? "");
   const [materialType, setMaterialType] = useState("syllabus");
   const [quarter, setQuarter] = useState("Winter");
   const [year, setYear] = useState("2026");
